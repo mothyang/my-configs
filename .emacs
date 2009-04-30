@@ -23,6 +23,31 @@
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/snippets")
 
+;; python stuff
+
+(autoload 'pymacs-apply "pymacs")
+(autoload 'pymacs-call "pymacs")
+(autoload 'pymacs-eval "pymacs" nil t)
+(autoload 'pymacs-exec "pymacs" nil t)
+(autoload 'pymacs-load "pymacs" nil t)
+
+(require 'pymacs)
+(pymacs-load "ropemacs" "rope-")
+(autoload 'python-mode "python-mode" "Python Mode." t)  
+(add-to-list 'auto-mode-alist '("\\.py\\'" . python-mode))  
+(add-to-list 'interpreter-mode-alist '("python" . python-mode))  
+(require 'python-mode) 
+(setq interpreter-mode-alist
+      (cons '("python" . python-mode)
+          interpreter-mode-alist))
+(setq
+ python-mode-hook
+ '(lambda () (progn
+               (set-variable 'py-indent-offset 4)
+               (define-key py-mode-map (kbd "RET") 'newline-and-indent)  
+               (set-variable 'py-smart-indentation t)
+               (set-variable 'indent-tabs-mode nil) )))
+
 ;; (defun jds-find-tags-file ()
 ;;   "recursively searches each parent directory for a file named 'TAGS' and returns the
 ;; path to that file or nil if a tags file is not found. Returns nil if the buffer is
@@ -81,18 +106,6 @@
 (setq default-tab-width 8)
 (column-number-mode t)
 
-;; ;; python 
-;; (setq interpreter-mode-alist
-;;       (cons '("python" . python-mode)
-;;           interpreter-mode-alist)
-;; (setq
-;;  python-mode-hook
-;;  '(lambda () (progn
-;;                (set-variable 'py-indent-offset 4)
-;;                (set-variable 'py-smart-indentation t)
-;;                (set-variable 'indent-tabs-mode nil) )))
-;; (autoload 'python-mode
-;;   "python-mode" "Python editing mode." t)
 
 
 ;;; system generated configuations.
