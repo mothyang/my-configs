@@ -1,5 +1,10 @@
+(server-mode t)
+
 (setq load-path
       (cons "~/.emacs.d" load-path))
+
+(require 'egg)
+
 ;; load cedet
 (load-file "~/.emacs.d/cedet/common/cedet.el")
 
@@ -24,7 +29,6 @@
 (yas/load-directory "~/.emacs.d/snippets")
 
 ;; python stuff
-
 (autoload 'pymacs-apply "pymacs")
 (autoload 'pymacs-call "pymacs")
 (autoload 'pymacs-eval "pymacs" nil t)
@@ -62,15 +66,13 @@
  backup-directory-alist
  '(("." . "~/.emacs_backups"))
  delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
+ kept-new-versions 1
+ kept-old-versions 1
  version-control t)
 
 ;; tab stuff
 (setq default-tab-width 8)
 (column-number-mode t)
-
-
 
 ;;; system generated configuations.
 (custom-set-variables
@@ -88,7 +90,6 @@
  '(scroll-bar-mode (quote right))
  '(semantic-python-dependency-system-include-path (quote ("/usr/lib/python/" "/usr/lib/python/site-packages")))
  '(show-paren-mode t))
-
 
 ;; color theme
 (require 'color-theme)
